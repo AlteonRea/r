@@ -69,6 +69,22 @@ private:
         }
     }
 
+    void preorderTraversal(TreeNode* node) {
+        if (node != nullptr) {
+            std::cout << node->data << " ";
+            preorderTraversal(node->left);
+            preorderTraversal(node->right);
+        }
+    }
+
+    void postorderTraversal(TreeNode* node) {
+        if (node != nullptr) {
+            postorderTraversal(node->left);
+            postorderTraversal(node->right);
+            std::cout << node->data << " ";
+        }
+    }
+
 public:
     BinaryTree() : root(nullptr) {}
 
@@ -83,6 +99,18 @@ public:
     void inorderTraversal() {
         std::cout << "Inorder Traversal: ";
         inorderTraversal(root);
+        std::cout << std::endl;
+    }
+
+    void preorderTraversal() {
+        std::cout << "Preorder Traversal: ";
+        preorderTraversal(root);
+        std::cout << std::endl;
+    }
+
+    void postorderTraversal() {
+        std::cout << "Postorder Traversal: ";
+        postorderTraversal(root);
         std::cout << std::endl;
     }
 };
@@ -101,6 +129,12 @@ int main() {
 
     // Menampilkan hasil Inorder Traversal sebelum penghapusan
     tree.inorderTraversal();
+
+    // Menampilkan hasil Preorder Traversal
+    tree.preorderTraversal();
+
+    // Menampilkan hasil Postorder Traversal
+    tree.postorderTraversal();
 
     // Menghapus data 40 dari tree
     tree.remove(40);
