@@ -85,6 +85,18 @@ private:
         }
     }
 
+    TreeNode* find(TreeNode* node, int val) {
+        if (node == nullptr || node->data == val) {
+            return node;
+        }
+
+        if (val < node->data) {
+            return find(node->left, val);
+        } else {
+            return find(node->right, val);
+        }
+    }
+
 public:
     BinaryTree() : root(nullptr) {}
 
@@ -113,6 +125,10 @@ public:
         postorderTraversal(root);
         std::cout << std::endl;
     }
+
+    TreeNode* find(int val) {
+        return find(root, val);
+    }
 };
 
 int main() {
@@ -135,6 +151,16 @@ int main() {
 
     // Menampilkan hasil Postorder Traversal
     tree.postorderTraversal();
+
+    // Mencari nilai 60 dalam tree
+    int valueToFind = 60;
+    TreeNode* foundNode = tree.find(valueToFind);
+
+    if (foundNode) {
+        std::cout << "Value " << valueToFind << " found in the tree." << std::endl;
+    } else {
+        std::cout << "Value " << valueToFind << " not found in the tree." << std::endl;
+    }
 
     // Menghapus data 40 dari tree
     tree.remove(40);
